@@ -47,11 +47,22 @@ class rFile
 				}
 		}
 		
+		
 		$record = $records[$_GET['record']];
-
+		echo "<table border = 1 bordercolor= black cellspacing=0 cellpadding=5 style='font-size:14pt'>";
+		echo "<tr>";
 		foreach($record as $key =>  $value) {
-		echo $key . ':'. $value . "<br>\n";
+			
+			echo "<th>$key</th>";
+			echo "<td>$value</td>";
+			
+		echo "</tr>";
+		
+	
+			
 		}
+		echo "</table>";
+	
  			
 		/*
 		echo "<table>\n";
@@ -80,7 +91,6 @@ class rFile
 	echo "</table>";
 */	
 	}
-	
 	
 }
 //Create objects and istantiate a class
