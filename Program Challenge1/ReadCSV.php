@@ -34,7 +34,7 @@ class rFile
 				//could not open file 
 				echo "Failed to open the fiel" . $fname;
 		}
-	
+			//display date
 			foreach($records as $record) {
 				foreach($record as $key => $value) {
 			echo $key . ': ' . $value .  "</br> \n";
