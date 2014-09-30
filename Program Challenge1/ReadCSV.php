@@ -34,15 +34,23 @@ class rFile
 				//could not open file 
 				echo "Failed to open the fiel" . $fname;
 		}
-			//display date
+		
+		
+			echo "<table>\n";
+			//display data
 			foreach($records as $record) {
+				
+			 	 echo "<tr>";
 				foreach($record as $key => $value) {
-			echo $key . ': ' . $value .  "</br> \n";
+					
+					echo "<td>$value</td>";
+			//echo $key . ': ' . $value .  "</br> \n";
 		}
-		echo '<hr>';
+		//echo '<hr>';
+		echo "</tr>";
 	}
 	
-	
+	echo "</table>";
 	
 	}
 	
