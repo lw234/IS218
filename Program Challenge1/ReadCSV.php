@@ -34,16 +34,43 @@ class rFile
 				//could not open file 
 				echo "Failed to open the fiel" . $fname;
 		}
+		// To link to the records
+		if (empty($_GET)){
+
+			foreach($records as $record){
+				$i++;
+				$University_name= $i -1;
+			
+				echo '<a href = '.' "http://web.njit.edu/~lw234/is218/Program Challenge1/ReadCSV.php?record=' . $University_name . '"'. '> Unversity '.$i. '</a>';
+	
+				echo '</p>';
+				}
+		}
 		
-		
-			echo "<table>\n";
-			//display data
+		$record = $records[$_GET['record']];
+
+		foreach($record as $key =>  $value) {
+		echo $key . ':'. $value . "<br>\n";
+		}
+ 			
+		/*
+		echo "<table>\n";
+		if($heading){
+				
+			foreach($keys=(array_keys($records[0]))as $key){
+						
+						echo "<th>$key</th>";
+						
+					}
+				//display data
 			foreach($records as $record) {
 				
 			 	 echo "<tr>";
 				foreach($record as $key => $value) {
 					
-					echo "<td>$value</td>";
+					echo"<td>$value</td>";
+				}						
+					//echo "<td>$value</td>";
 			//echo $key . ': ' . $value .  "</br> \n";
 		}
 		//echo '<hr>';
@@ -51,7 +78,7 @@ class rFile
 	}
 	
 	echo "</table>";
-	
+*/	
 	}
 	
 	
