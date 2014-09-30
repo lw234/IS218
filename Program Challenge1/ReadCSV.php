@@ -5,22 +5,18 @@
 class rFile 
 {
 	// defining variables 
-	private $_Fname;
-	private $_Heading;
-	
-	public function _construct($Fname,$Heading)
-	{
-		$this->_Fname = $Fname;
-		$this->_Heading =$heading;
-	}
-	public function readCSV($_Fname) {
-		$first_row = TRUE;
+	public $fname;
+	public $heading;
+	// open CSV file
+	public function readCSV($fname,$heading) {
 		ini_set('auto_detect_line_endings',TRUE);
-		if (($handle = fopen("$_Fname", "r")) !== FALSE) {
+		
+		// need a handler. Open the $fname file and use r for read mode 
+		if (($handle = fopen($fname, "r")) !== FALSE) {
 			while (($row = fgetcsv($handle, 1000, ",")) !== FALSE) {
-				if($first_row == TRUE) {
+				if($heading == TRUE) {
 					$column_heading = $row;
-					$first_row = FALSE;
+					$heading = FALSE;
 			} else {
 					$record = array_combine($column_heading, $row);
 					$records[] = $record;
@@ -30,15 +26,17 @@ class rFile
 				}		
 
 					fclose($handle);
+					
 			}
+		
+		else {
+			
+				//could not open file 
+				echo "Failed to open the fiel" . $fname;
+		}
 	
-	
-	}
-	
-	public function display() {
-	
-		foreach($records as $record) {
-			foreach($record as $key => $value) {
+			foreach($records as $record) {
+				foreach($record as $key => $value) {
 			echo $key . ': ' . $value .  "</br> \n";
 		}
 		echo '<hr>';
@@ -50,7 +48,7 @@ class rFile
 	
 	
 }
-$rFile = new rFile;
-$rFile->readCSV("test.csv");
-$rFile-> display();
+//Create objects and istantiate a class
+$obj1 = new rFile();
+$obj1->readCSV('hd2013.csv',TRUE);
 ?>
