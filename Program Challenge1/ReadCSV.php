@@ -32,22 +32,22 @@ class rFile
 		else {
 			
 				//could not open file 
-				echo "Failed to open the fiel" . $fname;
+				echo "Failed to open the file" . $fname;
 		}
 		// To link to the records
 		if (empty($_GET)){
 
 			foreach($records as $record){
 				$i++;
-				$University_name= $i -1;
+				//$University_name= $i -1;
 			
-				echo '<a href = '.' "http://web.njit.edu/~lw234/is218/Program Challenge1/ReadCSV.php?record=' . $University_name . '"'. '> Unversity '.$i. '</a>';
+				echo '<a href = '.' "http://web.njit.edu/~lw234/is218/Program Challenge1/ReadCSV.php?record=' . $i . '"'. '>'.$record['INSTNM']. '</a>';
 	
 				echo '</p>';
 				}
 		}
 		
-		
+		//Getting records and echo the key and value for each record
 		$record = $records[$_GET['record']];
 		echo "<table border = 1 bordercolor= black cellspacing=0 cellpadding=5 style='font-size:14pt'>";
 		echo "<tr>";
@@ -65,35 +65,36 @@ class rFile
 	
  			
 		/*
-		echo "<table>\n";
-		if($heading){
+		//echo "<table>\n";
+		//if($heading){
 				
-			foreach($keys=(array_keys($records[0]))as $key){
+			//foreach($keys=(array_keys($records[0]))as $key){
 						
-						echo "<th>$key</th>";
+						//echo "<th>$key</th>";
 						
-					}
+					//}
+		
 				//display data
 			foreach($records as $record) {
 				
-			 	 echo "<tr>";
+			 	 //echo "<tr>";
 				foreach($record as $key => $value) {
 					
-					echo"<td>$value</td>";
+					echo $key . ':'.$value ;
 				}						
 					//echo "<td>$value</td>";
 			//echo $key . ': ' . $value .  "</br> \n";
-		}
+	*/	//}
 		//echo '<hr>';
-		echo "</tr>";
+		//echo "</tr>";
 	}
 	
-	echo "</table>";
-*/	
-	}
+	//echo "</table>";
+	
+	//}
 	
 }
-//Create objects and istantiate a class
+//Create objects and intantiate a class
 $obj1 = new rFile();
-$obj1->readCSV('hd2013.csv',TRUE);
+$obj1->readCSV('hd.csv',TRUE);
 ?>
