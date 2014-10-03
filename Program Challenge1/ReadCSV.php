@@ -1,16 +1,9 @@
 <?php
 
-ini_set('display_errors','on');
-error_reporting(E_ALL | E_STRICT);
-
 // Create a class to read CSV files and display data in tables formate 
 
 class rFile 
 {
-	// defining variables 
-	//public $fname;
-	//public $heading;
-	// open CSV file
 public static function readCSV($fname,$heading) {
 		$first_row = TRUE;
 		ini_set('auto_detect_line_endings',TRUE);
@@ -33,19 +26,17 @@ public static function readCSV($fname,$heading) {
 	}
 		return $records;	
 }
+
+//loops to all the records and display the records in table formate
 	public static function main($records){
-		// To link to the records
+		// Create an access link for each college 
 		if (empty($_GET)){
 			
 			$i = -1;
-		//print_r($records);
 			foreach($records as $record){
 				$i++;
-				//$University_name= $i -1;
-			
 				echo '<a href = '.' "http://web.njit.edu/~lw234/is218/Program Challenge1/ReadCSV.php?record=' . $i . '"'. '>'.$record['Institution (entity) name']. '</a>';
-				//echo '<a href = '.' "http://web.njit.edu/~lw234/is218/Program Challenge1/ReadCSV.php?record=' . $University_name. '"'. '> University '.$i. '</a>';
-				//echo '<a href = '.' "http://web.njit.edu/~lw234/is218/Program Challenge1/ReadCSV.php?record=' .$i. '</a>';
+			
 				echo '</p>';
 				}
 		}
@@ -71,9 +62,9 @@ public static function readCSV($fname,$heading) {
 	
 	}
 	}
-
-	public static function ReplaceHead($var){
-		
+	//method to replace short heading in to full heading 
+	public static function ReplaceHeading($var){
+		//read college dictionary data
 	$Crecord=rFile::readCSV('varlist.csv',TRUE);
 	
 	foreach ($Crecord as $records){
@@ -81,32 +72,24 @@ public static function readCSV($fname,$heading) {
 		$replace[$records["varname"]]=  $records["varTitle"];
 	}
 	
-		foreach($var as $krecords ){
+		foreach($var as $Drecords ){
 			
-			  $kr[] = array_combine($replace,$krecords );
+			  $Fullheading[] = array_combine($replace,$Drecords );
 			  
 			 
 		}
-		return $kr;	
+		return $Fullheading;	
 	}
 	 	
 	}
 
-/*
-	public function csvrecord($records){
-  		foreach($records as $record) {
-    		foreach($record as $key => $value) {
-     		echo $key . ': ' . $value .  "</br> \n";
-        
-    		}
-    			echo '<hr>';
-    		}
- }*/
+
 	
 //calling the readCSV function;
 $var=rFile::readCSV('hd100.csv',TRUE);
-//displaying the data
-$var=rFile::ReplaceHead($var);
+//calling the ReplaceHeading function 
+$var=rFile::ReplaceHeading($var);
+//calling main class 
 rFile::main($var);
 
 ?>
