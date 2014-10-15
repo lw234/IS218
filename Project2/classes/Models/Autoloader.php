@@ -1,7 +1,6 @@
 <?php
-namespace classes\Models
-class Autoloader
-{
+namespace classes\Models;
+class Autoloader{
     public static function loader($class){
         $filename = strtolower($class) . '.php';
         $file = 'code/core/' . $filename;

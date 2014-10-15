@@ -1,6 +1,12 @@
 <?php
 namespace classes\Models;
-class DisplayRecord{
+
+// Declare the interface 
+interface DisplayRecord_Template{
+	public static function display($records);
+}
+
+class DisplayRecord implements DisplayRecord_Template{
 	
 	public static function display($records){
 		

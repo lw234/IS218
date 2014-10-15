@@ -1,6 +1,12 @@
 <?php
 namespace classes\Models;
-class ReadCSV {
+
+// Declare the interface 
+interface ReadCSV_Template{
+	public static function Read($fname,$heading);
+}
+
+class ReadCSV implements ReadCSV_Template {
 	public static function Read($fname,$heading){
 $first_row = TRUE;
 ini_set('auto_detect_line_endings',TRUE);
